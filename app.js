@@ -1,7 +1,11 @@
 const express = require('express')
+const { engine } = require('express-handlebars')
 const app = express()
 const port = 3000
 
+app.engine('.hbs', engine({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+app.set('views', './views');
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -10,7 +14,7 @@ app.get('/', (req, res) => {
 
 //將根路徑 / redirect 到 /movies ，專案規格中，網站的首頁會直接導向電影清單
 app.get('/movies', (req, res) => {
-  res.send('listing movies')
+  res.render('index')
 })
 
 app.get('/movie/:id', (req, res) => {
