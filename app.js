@@ -16,12 +16,13 @@ app.get('/', (req, res) => {
 
 //將根路徑 / redirect 到 /movies ，專案規格中，網站的首頁會直接導向電影清單
 app.get('/movies', (req, res) => {
-  res.render('index', { movies, BASE_IMG_URL})
+  res.render('index', {movies, BASE_IMG_URL})
 })
 
 app.get('/movie/:id', (req, res) => {
   const id = req.params.id
-  res.send(`read movie: ${id}`)
+  const movie = movies.find((mv) => mv.id.toString() === id)
+  res.render('detail',{ movie , BASE_IMG_URL })
 })
 
 app.listen(port, () => {
