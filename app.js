@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 })
 
 //將根路徑 / redirect 到 /movies ，專案規格中，網站的首頁會直接導向電影清單
+// Object.value，將一個物件傳進去時，Object 能夠將所有屬性都印出來；而 some() 的功能在於做條件判斷，只要任何一個條件有符合就能夠通過
 app.get('/movies', (req, res) => {
   const keyword = req.query.search?.trim()
   const matchedMovies = keyword ? movies.filter((mv) =>
